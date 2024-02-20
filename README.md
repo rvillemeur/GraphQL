@@ -1,14 +1,12 @@
 # GraphQL
 GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data (https://graphql.org). 
-GraphQL is ported to two Smalltalk dialects, Pharo (6.1) and VisualWorks (7.4 & 8.3). 
-
 ___
 ## Installation on Pharo
 Execute the following incantation in a Playground:
 ```Smalltalk
 Metacello new
     baseline: 'GraphQL';
-    repository: 'github://OBJECTSEMANTICS/GraphQL';
+    repository: 'github://rvillemeur/GraphQL';
     load.
 ``` 
 GraphQL is also available in the Pharo Catalog Browser:
@@ -16,23 +14,6 @@ GraphQL is also available in the Pharo Catalog Browser:
 2. In search input write: `Graphql`
 3. Load it 
 
-___
-## Installation on VisualWorks 7.4
-This project works on VisualWorks 7.4, to install GraphQL please execute the next piece of code
-
-```Smalltalk
-| dir file |
-dir := Dialog requestDirectoryName: 'Choose the graphql parcels directory'.
-dir isEmpty ifTrue: [^ self].
-dir:= dir, (String with: Filename separator).
-#('PetitExtensions' 'PetitParser' 'PetitTests'
- 'GraphQLBeta' 'GraphQLExtensions' 'GraphQLBetaDemoSite') do: [:fn | 
- file := dir, fn, '.pcl'.
-
- file asFilename exists ifFalse: [self error: 'Missing parcel!', file asString].
- Parcel loadParcelFrom: file asFilename
-  ].
-```
 Once load all the parcels of our project. If everything is going well, all the test must pass, except the tests of the classes:
 
 * GQLTypeValidatorTest
@@ -47,27 +28,7 @@ There are some classes very important on Visual Works for GraphQL:
 - `GraphQL`: It's the class that attends request and return the answer.
 
 If you want to add your data to the Schema, you can modify the schema method on the class side of `Query`. Remember that the schema is defined as a text and follows the specifications of GraphQL.
-Also don't forget to create all the necessary methods (operations) on the instance side of Query to provide the answer according to the schema defined.
-
-___
-## Installation on VisualWorks 8.x
-Execute the next code
-
-```Smalltalk
-| dir file |
-dir := Dialog requestDirectoryName: 'Choose the graphql parcels directory'.
-dir isEmpty ifTrue: [^ self].
-dir:= dir, (Core.String with: Filename separator).
-#('PetitParser' 'PetitTests' 'PetitExtentions' 'GraphQLBeta' 'GraphQLJSON' 'GraphQLBetaExtentions' 'Sport' 'Swazoo' 'GraphQLDemoSite') do: [:fn | 
- file := dir, fn, '.pcl'.
-
- file asFilename exists ifFalse: [self error: 'Missing parcel!', file asString].
- Parcel loadParcelFrom: file asFilename
-  ].
-```
-
-After loading these parcels, you should be able to run (i) all the tests of GraphQL without any failure and (ii) the demos given below
-
+Also don't forget to create all the necessary methods (operations) on the instance side of Query to provide the answer according to the schema defined
 ___
 # Feature ideas
 
